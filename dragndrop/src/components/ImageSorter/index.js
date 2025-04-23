@@ -34,11 +34,11 @@ export default function ImageSorter() {
     if (draggedIndex === null || draggedIndex === targetIndex) return;
 
     setImages((prevImages) => {
-      const updatedImages = [...prevImages];
-      const [draggedItem] = updatedImages.splice(draggedIndex, 1);
-      updatedImages.splice(targetIndex, 0, draggedItem);
+      const updated = [...prevImages];
+      const [dragged] = updated.splice(draggedIndex, 1);
+      updated.splice(targetIndex, 0, dragged);
       setDraggedIndex(targetIndex);
-      return updatedImages;
+      return updated;
     });
   };
 
@@ -76,7 +76,7 @@ export default function ImageSorter() {
           <div
             key={image.id}
             className={`${styles.imageWrapper} ${
-              draggedIndex === index ? styles.dragging : ""
+              draggedIndex === index ? styles.dragged : ""
             }`}
             draggable
             onDragStart={() => handleDragStart(index)}
